@@ -194,10 +194,10 @@ form button[type="submit"]:hover {
   text-align: center;
   color: #6c757d;
   font-size: 15px;
-  position: fixed;
+  position: relative;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: -85px;
 }
 
 .footer-content p {
