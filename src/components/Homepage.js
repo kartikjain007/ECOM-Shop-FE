@@ -10,7 +10,7 @@ const Homepage = () => {
 
   useEffect(() => {
     axios({
-      url: `https://ecom-vercel-wheat.vercel.app/api/categories`,
+      url: `${process.env.REACT_APP_BASE_URL}/categories`,
       method: "GET",
     })
       .then((res) => {
@@ -27,7 +27,7 @@ const Homepage = () => {
   useEffect(() => {
     if (selectedCategory) {
       axios({
-        url: `https://ecom-vercel-wheat.vercel.app/api/products/category/${selectedCategory._id}`,
+        url: `${process.env.REACT_APP_BASE_URL}/products/category/${selectedCategory._id}`,
         method: "GET",
       })
         .then((res) => {

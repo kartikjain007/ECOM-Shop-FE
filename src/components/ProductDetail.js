@@ -6,7 +6,6 @@ import axios from "axios";
 import "../index.css";
 
 const ProductDetail = () => {
-  // const baseURL = process.env.REACT_APP_BASE_URL;
   const { categoryId, productId } = useParams();
   const { addToCart } = useCart();
   const navigate = useNavigate();
@@ -15,7 +14,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     axios({
-      url: `https://ecom-vercel-wheat.vercel.app/api/products/${productId}`,
+      url: `${process.env.REACT_APP_BASE_URL}/products/${productId}`,
       method: "GET",
     })
       .then((res) => {

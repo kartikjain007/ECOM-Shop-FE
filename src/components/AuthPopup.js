@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const AuthPopup = ({ closePopup, isLoginMode, handleLogin }) => {
-  const baseURL = process.env.REACT_APP_BASE_URL;
   const [isLogin, setIsLogin] = useState(isLoginMode);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,7 +11,9 @@ const AuthPopup = ({ closePopup, isLoginMode, handleLogin }) => {
     e.preventDefault();
     const data = { email, password, ...(isLogin ? {} : { name }) };
     axios({
-      url: isLogin ? `${baseURL}/Auth/login` : `${baseURL}/Auth/signup`,
+      url: isLogin
+        ? `${process.env.REACT_APP_BASE_URL}/Auth/login`
+        : `${process.env.REACT_APP_BASE_URL}/Auth/signup`,
       method: "POST",
       data: data,
     })
