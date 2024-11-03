@@ -1,25 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../contexts/CartContext";
-import AuthPopup from "./AuthPopup"; // Import AuthPopup component
+import AuthPopup from "./AuthPopup";
 import { useLogin } from "../contexts/LoginContext";
+import "../index.css";
 
 const Header = () => {
   const { cartItems } = useCart();
-  const [showPopup, setShowPopup] = useState(false); // Control popup visibility
-  const [isLoginMode, setIsLoginMode] = useState(true); // Track if login or signup is needed
+  const [showPopup, setShowPopup] = useState(false);
+  const [isLoginMode, setIsLoginMode] = useState(true);
   const { username, authenticated, handleLogin } = useLogin();
 
   const cartCount = cartItems.reduce((count, item) => count + item.quantity, 0);
 
   const handleLoginClick = () => {
-    setIsLoginMode(true); // Set mode to login
-    setShowPopup(true); // Show popup
+    setIsLoginMode(true);
+    setShowPopup(true);
   };
 
   const handleSignupClick = () => {
-    setIsLoginMode(false); // Set mode to signup
-    setShowPopup(true); // Show popup
+    setIsLoginMode(false);
+    setShowPopup(true);
   };
 
   const handleLogout = () => {
@@ -32,7 +33,7 @@ const Header = () => {
 
   return (
     <header className="header">
-      <h1>Shopping Website</h1>
+      <h1 className="logo-name">ECom Website</h1>
       <nav
         style={{
           display: "flex",
@@ -46,7 +47,9 @@ const Header = () => {
         </Link>
         {authenticated ? (
           <>
-            <div style={{ margin: "0px 10px" }}>Hey, {username}!</div>
+            <div className="username" style={{ margin: "0px 10px" }}>
+              Hey, {username}!
+            </div>
             <Link onClick={handleLogout}>Logout</Link>
           </>
         ) : (
@@ -56,7 +59,7 @@ const Header = () => {
           </>
         )}
       </nav>
-      {/* Show AuthPopup when showPopup is true */}
+
       {showPopup && (
         <AuthPopup
           closePopup={closePopup}

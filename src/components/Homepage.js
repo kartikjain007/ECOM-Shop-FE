@@ -3,13 +3,14 @@ import CategoryList from "./CategoryList";
 import axios from "axios";
 
 const Homepage = () => {
+  // const baseURL = process.env.REACT_APP_BASE_URL;
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     axios({
-      url: "https://ecom-vercel-wheat.vercel.app/api/categories",
+      url: `https://ecom-vercel-wheat.vercel.app/api/categories`,
       method: "GET",
     })
       .then((res) => {
@@ -44,6 +45,28 @@ const Homepage = () => {
       {/* Banner Section */}
       <div className="banner">
         <h1>Welcome to Our Shopping Site</h1>
+      </div>
+      <div className="first-section">
+        <div className="first-section-box1">
+          <h1>Lowest Prizes Ever...</h1>
+          <div className="first-section-list">
+            <ul>
+              <li className="first-section-list1">Free Delivery</li>
+              <li className="first-section-list2">Cash on delivery</li>
+              <li className="first-section-list3">Easy returns</li>
+            </ul>
+          </div>
+          <div className="first-section-button">
+            <button>Download the App now</button>
+          </div>
+        </div>
+        <div>
+          <img
+            className="first-section-box2"
+            src="https://images.meesho.com/images/marketing/1728882602080_512.webp"
+            alt="First banner"
+          />
+        </div>
       </div>
 
       {/* Category Tabs */}

@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../contexts/CartContext";
 import { useLogin } from "../contexts/LoginContext";
+import "../index.css";
 
 const CheckoutPage = () => {
   const location = useLocation();
@@ -19,7 +20,7 @@ const CheckoutPage = () => {
       if (!isSingleProduct) {
         clearCart();
       }
-      navigate("/"); // Redirect to homepage after payment
+      navigate("/");
     } else {
       alert("Please login in your account before proceeding to payment!");
     }
@@ -33,7 +34,7 @@ const CheckoutPage = () => {
           {items.map((item, index) => (
             <div key={index} className="checkout-item">
               <img src={item.image} alt={item.name} />
-              <div>
+              <div className="checkout-details">
                 <h3>{item.name}</h3>
                 <p>Price: ${item.price}</p>
                 <p>Quantity: {item.quantity}</p>

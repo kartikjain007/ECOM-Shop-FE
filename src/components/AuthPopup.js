@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const AuthPopup = ({ closePopup, isLoginMode, handleLogin }) => {
+  const baseURL = process.env.REACT_APP_BASE_URL;
   const [isLogin, setIsLogin] = useState(isLoginMode);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -11,16 +12,14 @@ const AuthPopup = ({ closePopup, isLoginMode, handleLogin }) => {
     e.preventDefault();
     const data = { email, password, ...(isLogin ? {} : { name }) };
     axios({
-      url: isLogin
-        ? "https://ecom-vercel-wheat.vercel.app/api/Auth/login"
-        : "https://ecom-vercel-wheat.vercel.app/api/Auth/signup",
+      url: isLogin ? `${baseURL}/Auth/login` : `${baseURL}/Auth/signup`,
       method: "POST",
       data: data,
     })
       .then((res) => {
         let data = res.data;
         handleLogin(true, data.user_name, data.user_id);
-        closePopup(); // Close the popup after redirect
+        closePopup();
       })
       .catch((err) => {
         handleLogin(false);
